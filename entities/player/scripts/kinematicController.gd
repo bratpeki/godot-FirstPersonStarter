@@ -48,8 +48,6 @@ func _input(event: InputEvent) -> void:
 
 func walk(delta: float) -> void:
 
-	print ("%d" % [PlayerGlobal.stamina])
-
 	direction = Vector3()
 	var aim: Basis = get_global_transform().basis
 	if moveAxis.x >= 0.5: direction -= aim.z
@@ -77,6 +75,7 @@ func walk(delta: float) -> void:
 		tempSpeed = walkSpeed
 		cam.set_fov(lerp(cam.fov, FOV, delta * 8))
 		PlayerGlobal.stamina += staminaFill*convert(PlayerGlobal.stamina > 0, 2)
+	if PlayerGlobal.stamina == 0 and Input.is_action_just_released("move_sprint"): PlayerGlobal.stamina = 1
 	PlayerGlobal.stamina = convert(clamp(PlayerGlobal.stamina, 0, 100), 2)
 
 	var tempVel: Vector3 = velocity
