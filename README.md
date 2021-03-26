@@ -10,9 +10,9 @@ The idea is to add or improve the following elements:
 
 | Feature  | Added  |
 | :------------ | :------------ |
-| Sprinting  | ✅ |
-|  UI System | ❎ |
-|  Shader System | ❎ |
+| Sprinting | ✅ |
+| UI System | ✅ |
+| Shader System | ❎ |
 | Animations | ❎ |
 
 and other things I come up with!

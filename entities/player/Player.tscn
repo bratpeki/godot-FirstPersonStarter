@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://entities/player/scripts/kinematicController.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/scripts/uiController.gd" type="Script" id=2]
 [ext_resource path="res://entities/player/scripts/shaderController.gd" type="Script" id=3]
+[ext_resource path="res://images/healthIcon.png" type="Texture" id=4]
+[ext_resource path="res://images/sprintIcon.png" type="Texture" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.6
@@ -34,6 +36,58 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Health" type="Panel" parent="UI"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 480.0
+margin_bottom = 88.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="UI/Health"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 392.0
+margin_bottom = 72.0
+step = 1.0
+value = 100.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Health"]
+margin_left = 400.0
+margin_top = 8.0
+texture = ExtResource( 4 )
+
+[node name="Stamina" type="Panel" parent="UI"]
+margin_left = 8.0
+margin_top = 96.0
+margin_right = 480.0
+margin_bottom = 176.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="UI/Stamina"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 392.0
+margin_bottom = 72.0
+step = 1.0
+value = 100.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Stamina"]
+margin_left = 400.0
+margin_top = 8.0
+texture = ExtResource( 5 )
 
 [node name="Shaders" type="Control" parent="."]
 anchor_right = 1.0
