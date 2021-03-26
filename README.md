@@ -2,6 +2,8 @@
 # Godot's Advanced 3D Controller*
 \*applies to Godot 3.
 
+![](demo.gif)
+
 ## Summary and Credits
 This repo is a project meant to be an improvement to the @Whimfoome's [godot-FirstPersonStarter](https://github.com/Whimfoome/godot-FirstPersonStarter "godot-FirstPersonStarter").
 
