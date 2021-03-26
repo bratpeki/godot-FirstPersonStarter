@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://entities/player/player_controller.gd" type="Script" id=1]
+[ext_resource path="res://entities/player/scripts/kinematicController.gd" type="Script" id=1]
+[ext_resource path="res://entities/player/scripts/uiController.gd" type="Script" id=2]
+[ext_resource path="res://entities/player/scripts/shaderController.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.6
@@ -12,8 +14,7 @@ height = 1.5
 collision_layer = 2
 collision_mask = 3
 script = ExtResource( 1 )
-head_path = NodePath("Head")
-cam_path = NodePath("Head/Camera")
+sprintSpeed = 32
 
 [node name="Collision" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
@@ -26,3 +27,19 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 keep_aspect = 0
 fov = 80.0
 far = 250.0
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shaders" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
