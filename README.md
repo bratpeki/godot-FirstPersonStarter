@@ -10,7 +10,7 @@ The idea is to add or improve the following elements:
 
 | Feature  | Added  |
 | :------------ | :------------ |
-| Sprinting  | ❎ |
+| Sprinting  | ✅ |
 |  UI System | ❎ |
 |  Shader System | ❎ |
 | Animations | ❎ |
