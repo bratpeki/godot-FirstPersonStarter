@@ -1,6 +1,5 @@
 
 # Godot's Advanced 3D Controller*
-\*applies to Godot 3.
 
 ![](demo.gif)
 
@@ -20,4 +19,4 @@ The idea is to add or improve the following elements:
 and other things I come up with!
 
 ## Implementation
-Currently, you can use this repo as Godot project, although I intent to have this project use only a TSCN for the player and the necessary scripts.
+Currently, you can use this repo as a Godot project, although I intent to have this project use only a TSCN for the player and the necessary scripts.
