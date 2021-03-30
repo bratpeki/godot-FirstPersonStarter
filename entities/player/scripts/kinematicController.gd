@@ -75,7 +75,7 @@ func walk(delta: float) -> void:
 		tempSpeed = walkSpeed
 		cam.set_fov(lerp(cam.fov, FOV, delta * 8))
 		PlayerGlobal.stamina += staminaFill*int(PlayerGlobal.stamina > 0)
-	if PlayerGlobal.stamina == 0 and Input.is_action_just_released("move_sprint"): PlayerGlobal.stamina = 1
+	if PlayerGlobal.stamina == 0 and Input.is_action_just_released("move_sprint"): PlayerGlobal.stamina = staminaFill
 	PlayerGlobal.stamina = int(clamp(PlayerGlobal.stamina, 0, 100))
 
 	var tempVel: Vector3 = velocity

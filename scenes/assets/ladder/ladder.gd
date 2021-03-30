@@ -8,10 +8,9 @@ extends Area
 #
 # *You can use Groups or Classes too*
 
-
 func _on_body_entered(body: PhysicsBody) -> void:
 	body.flying = true
 
-
 func _on_body_exited(body: PhysicsBody) -> void:
 	body.flying = false
+	PlayerGlobal.stamina += body.staminaFill # Currently, only the player reacts with the ladder
