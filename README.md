@@ -12,7 +12,8 @@ The idea is to add or improve the following elements:
 | Feature  | Added  |
 | :------------ | :------------ |
 | Sprinting | ✅ |
-| UI System | ✅ |
+| UI System | ✅ ( partially! ) |
+| Crouching | ✅ |
 | Shader System | ❎ |
 | Animations | ❎ |
 
