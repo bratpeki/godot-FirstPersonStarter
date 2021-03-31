@@ -62,6 +62,9 @@ __meta__ = {
 margin_left = 400.0
 margin_top = 8.0
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Stamina" type="Panel" parent="UI"]
 margin_left = 8.0

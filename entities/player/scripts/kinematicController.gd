@@ -14,8 +14,11 @@ export(int) var deacceleration = 10
 export(int) var flySpeed = 10
 export(int) var flyAcc = 4
 export(int) var jumpHeight = 10
-export(int) var staminaDeplete = 2
-export(int) var staminaFill = 1
+export(int) var staminaDeplete = 4
+export(int) var staminaFill = 2
+export(int) var crouchSpeedCap = 6
+export(int) var crouchStaminaDeplete = 2
+export(int) var crouchStaminaFill = 1
 
 var mouseAxis := Vector2()
 var velocity := Vector3()
@@ -70,13 +73,19 @@ func walk(delta: float) -> void:
 	if (Input.is_action_pressed("move_sprint") and can_sprint() and moveAxis != Vector2(0, 0)):
 		tempSpeed = sprintSpeed
 		cam.set_fov(lerp(cam.fov, FOV * 1.05, delta * 8))
-		PlayerGlobal.stamina -= staminaDeplete
+		PlayerGlobal.stamina -= staminaDeplete*int(!Input.is_action_pressed("move_crouch"))
+		PlayerGlobal.stamina -= crouchStaminaDeplete*int(Input.is_action_pressed("move_crouch"))
 	else:
 		tempSpeed = walkSpeed
 		cam.set_fov(lerp(cam.fov, FOV, delta * 8))
-		PlayerGlobal.stamina += staminaFill*int(PlayerGlobal.stamina > 0)
+		PlayerGlobal.stamina += staminaFill*int(PlayerGlobal.stamina > 0)*int(!Input.is_action_pressed("move_crouch"))
+		PlayerGlobal.stamina += crouchStaminaFill*int(PlayerGlobal.stamina > 0)*int(Input.is_action_pressed("move_crouch"))
+
 	if PlayerGlobal.stamina == 0 and Input.is_action_just_released("move_sprint"): PlayerGlobal.stamina = staminaFill
 	PlayerGlobal.stamina = int(clamp(PlayerGlobal.stamina, 0, 100))
+
+	scale.y = 0.5 * (2 - int(Input.is_action_pressed("move_crouch")))
+	tempSpeed -= crouchSpeedCap*int(Input.is_action_pressed("move_crouch"))
 
 	var tempVel: Vector3 = velocity
 	tempVel.y = 0
