@@ -80,8 +80,9 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = 392.0
 margin_bottom = 72.0
+max_value = 1000.0
 step = 1.0
-value = 100.0
+value = 1000.0
 percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false

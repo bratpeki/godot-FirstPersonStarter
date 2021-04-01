@@ -1,31 +1,35 @@
 extends KinematicBody
 
-onready var head: Spatial = $Head
 onready var cam: Camera = $Head/Camera
+onready var head: Spatial = $Head
 
-export(float, 0.0, 1.0, 0.05) var airControl = 0.3
-export(float) var mouseSens = 12.0
 export(float) var FOV = 80.0
 export(float) var gravity = 30.0
-export(int) var walkSpeed = 10
-export(int) var sprintSpeed = 16
-export(int) var acceleration = 8
-export(int) var deacceleration = 10
-export(int) var flySpeed = 10
-export(int) var flyAcc = 4
-export(int) var jumpHeight = 10
-export(int) var staminaDeplete = 4
-export(int) var staminaFill = 2
-export(int) var crouchSpeedCap = 6
-export(int) var crouchStaminaDeplete = 2
-export(int) var crouchStaminaFill = 1
+export(float) var mouseSens = 12.0
+export(float) var sprintFOV = 90.0
+export(float, 0.0, 1.0, 0.05) var airControl = 0.3
 
-var mouseAxis := Vector2()
-var velocity := Vector3()
-var direction := Vector3()
-var moveAxis := Vector2()
-var sprint_enabled := true
+export(int) var acceleration = 8
+export(int) var crouchSpeedCap = 6
+export(int) var crouchStaminaDeplete = 6
+export(int) var crouchStaminaFill = 2
+export(int) var deacceleration = 10
+export(int) var flyAcc = 4
+export(int) var flySpeed = 10
+export(int) var jumpHeight = 10
+export(int) var sprintSpeed = 16
+export(int) var staminaDeplete = 10
+export(int) var staminaFill = 6
+export(int) var walkSpeed = 10
+
 var flying := false
+var sprint_enabled := true
+
+var direction := Vector3()
+var mouseAxis := Vector2()
+var moveAxis := Vector2()
+var velocity := Vector3()
+
 const FLOOR_MAX_ANGLE: float = deg2rad(46.0)
 
 func _ready() -> void:
@@ -72,7 +76,7 @@ func walk(delta: float) -> void:
 	var tempSpeed: int
 	if (Input.is_action_pressed("move_sprint") and can_sprint() and moveAxis != Vector2(0, 0)):
 		tempSpeed = sprintSpeed
-		cam.set_fov(lerp(cam.fov, FOV * 1.05, delta * 8))
+		cam.set_fov(lerp(cam.fov, sprintFOV, delta * 8))
 		PlayerGlobal.stamina -= staminaDeplete*int(!Input.is_action_pressed("move_crouch"))
 		PlayerGlobal.stamina -= crouchStaminaDeplete*int(Input.is_action_pressed("move_crouch"))
 	else:
@@ -82,7 +86,7 @@ func walk(delta: float) -> void:
 		PlayerGlobal.stamina += crouchStaminaFill*int(PlayerGlobal.stamina > 0)*int(Input.is_action_pressed("move_crouch"))
 
 	if PlayerGlobal.stamina == 0 and Input.is_action_just_released("move_sprint"): PlayerGlobal.stamina = staminaFill
-	PlayerGlobal.stamina = int(clamp(PlayerGlobal.stamina, 0, 100))
+	PlayerGlobal.stamina = int(clamp(PlayerGlobal.stamina, 0, 1000))
 
 	scale.y = 0.5 * (2 - int(Input.is_action_pressed("move_crouch")))
 	tempSpeed -= crouchSpeedCap*int(Input.is_action_pressed("move_crouch"))
