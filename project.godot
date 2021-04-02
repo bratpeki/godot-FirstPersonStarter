@@ -1131,6 +1131,11 @@ move_crouch={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777238,"unicode":0,"echo":false,"script":null)
  ]
 }
+interact_hold={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -1141,4 +1146,3 @@ move_crouch={
 [rendering]
 
 quality/filters/msaa=1
-environment/default_environment="res://scenes/s_main/default_env.tres"
