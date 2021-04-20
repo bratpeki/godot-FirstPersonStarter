@@ -8,6 +8,7 @@ export(float) var gravity = 30.0
 export(float) var mouseSens = 12.0
 export(float) var sprintFOV = 90.0
 export(float, 0.0, 1.0, 0.05) var airControl = 0.3
+export(float) var throwStrength = 5.0
 
 export(int) var acceleration = 8
 export(int) var crouchSpeedCap = 6
@@ -23,7 +24,8 @@ export(int) var staminaFill = 6
 export(int) var walkSpeed = 10
 
 var flying := false
-var sprint_enabled := true
+var sprintEnabled := true
+var holding := false
 
 var direction := Vector3()
 var mouseAxis := Vector2()
@@ -46,6 +48,13 @@ func _physics_process(delta: float) -> void:
 
 	if flying: fly(delta)
 	else: walk(delta)
+
+	if Input.is_action_just_pressed("interact_hold"):
+		if $Head/RayCast.is_colliding():
+			var collidedWith = $Head/RayCast.get_collider()
+			collidedWith.rotation_degrees = rotation_degrees
+			collidedWith.linear_velocity = Vector3( head.rotation_degrees.x/90.0 * throwStrength, rotation_degrees.y/180.0 * throwStrength, 0 )
+			print ( "X: %f Y: %f" % [head.rotation_degrees.x/90.0, rotation_degrees.y/180.0] )
 
 func _input(event: InputEvent) -> void:
 
@@ -108,7 +117,7 @@ func walk(delta: float) -> void:
 		if abs(velocity.x) < velClamp: velocity.x = 0
 		if abs(velocity.z) < velClamp: velocity.z = 0
 
-	var moving = move_and_slide_with_snap(velocity, tempSnap, Vector3.UP, true, 4, FLOOR_MAX_ANGLE)
+	var moving = move_and_slide_with_snap(velocity, tempSnap, Vector3.UP, true, 4, FLOOR_MAX_ANGLE, false)
 	if is_on_wall(): velocity = moving
 	else: velocity.y = moving.y
 
@@ -143,4 +152,4 @@ func camera_rotation() -> void:
 		temp_rot.x = clamp(temp_rot.x, -90, 90)
 		head.rotation_degrees = temp_rot
 
-func can_sprint() -> bool: return (sprint_enabled and PlayerGlobal.stamina > 0 and is_on_floor())
+func can_sprint() -> bool: return (sprintEnabled and PlayerGlobal.stamina > 0 and is_on_floor())

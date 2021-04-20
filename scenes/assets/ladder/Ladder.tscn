@@ -12,7 +12,7 @@ size = Vector3( 0.5, 2, 1.5 )
 albedo_color = Color( 0.380392, 0.4, 0.447059, 1 )
 
 [node name="Ladder" type="Area"]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 2
 script = ExtResource( 1 )
 

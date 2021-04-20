@@ -1139,9 +1139,10 @@ interact_hold={
 
 [layer_names]
 
-3d_physics/layer_1="Pickups"
+3d_physics/layer_1="Environment"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Holdable"
+3d_physics/layer_4="Pickups"
 
 [rendering]
 

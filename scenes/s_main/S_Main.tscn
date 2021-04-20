@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://env/day_blue.tres" type="Environment" id=1]
 [ext_resource path="res://scenes/s_main/s_main.gd" type="Script" id=2]
@@ -20,18 +20,11 @@ size = Vector3( 1, 1, 1 )
 [sub_resource type="ConvexPolygonShape" id=4]
 points = PoolVector3Array( -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5 )
 
-[sub_resource type="SphereShape" id=5]
+[sub_resource type="BoxShape" id=5]
 
-[sub_resource type="SphereMesh" id=6]
+[sub_resource type="CubeMesh" id=6]
 
 [sub_resource type="SpatialMaterial" id=7]
-albedo_color = Color( 0.0745098, 0.262745, 0.0980392, 1 )
-
-[sub_resource type="BoxShape" id=8]
-
-[sub_resource type="CubeMesh" id=9]
-
-[sub_resource type="SpatialMaterial" id=10]
 albedo_color = Color( 0.2, 0.00784314, 0.160784, 1 )
 
 [node name="S_Main" type="Spatial"]
@@ -103,7 +96,7 @@ material/0 = ExtResource( 7 )
 shape = SubResource( 4 )
 
 [node name="Wall2" type="MeshInstance" parent="ArenaGeometry"]
-transform = Transform( 1, 0, 0, 0, -1.74846e-06, -6, 0, 40, -2.62268e-07, 19.5, 3.5, 0 )
+transform = Transform( 1, 0, 0, 0, -1.74846e-06, -6, 0, 40, -2.62268e-07, 20, 3.5, 0 )
 use_in_baked_light = true
 mesh = SubResource( 3 )
 material/0 = ExtResource( 7 )
@@ -114,7 +107,7 @@ material/0 = ExtResource( 7 )
 shape = SubResource( 4 )
 
 [node name="Wall3" type="MeshInstance" parent="ArenaGeometry"]
-transform = Transform( -4.37114e-08, 40, -2.62268e-07, 0, -1.74846e-06, -6, -1, -1.74846e-06, 1.14641e-14, 0, 3.5, 19.5 )
+transform = Transform( -4.37114e-08, 40, -2.62268e-07, 0, -1.74846e-06, -6, -1, -1.74846e-06, 1.14641e-14, 0, 3.5, 20 )
 use_in_baked_light = true
 mesh = SubResource( 3 )
 material/0 = ExtResource( 7 )
@@ -137,45 +130,19 @@ shape = SubResource( 4 )
 
 [node name="RigidBodies" type="Spatial" parent="."]
 
-[node name="Ball" type="RigidBody" parent="RigidBodies"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2962, 13.3007, 1.94014 )
-
-[node name="CollisionShape" type="CollisionShape" parent="RigidBodies/Ball"]
-shape = SubResource( 5 )
-
-[node name="MeshInstance" type="MeshInstance" parent="RigidBodies/Ball/CollisionShape"]
-mesh = SubResource( 6 )
-material/0 = SubResource( 7 )
-
-[node name="Ball2" type="RigidBody" parent="RigidBodies"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2773, 13.3007, -0.803034 )
-
-[node name="CollisionShape" type="CollisionShape" parent="RigidBodies/Ball2"]
-shape = SubResource( 5 )
-
-[node name="MeshInstance" type="MeshInstance" parent="RigidBodies/Ball2/CollisionShape"]
-mesh = SubResource( 6 )
-material/0 = SubResource( 7 )
-
-[node name="Ball3" type="RigidBody" parent="RigidBodies"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.81008, 22.3529, 1.41859 )
-
-[node name="CollisionShape" type="CollisionShape" parent="RigidBodies/Ball3"]
-shape = SubResource( 5 )
-
-[node name="MeshInstance" type="MeshInstance" parent="RigidBodies/Ball3/CollisionShape"]
-mesh = SubResource( 6 )
-material/0 = SubResource( 7 )
-
 [node name="Cube" type="RigidBody" parent="RigidBodies"]
 transform = Transform( 0.745155, 0.660129, -0.0947264, -0.584405, 0.577941, -0.569609, -0.321269, 0.479806, 0.816439, 11.4314, 23.661, 10.3007 )
+collision_layer = 4
+collision_mask = 5
+gravity_scale = 2.0
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBodies/Cube"]
-shape = SubResource( 8 )
+transform = Transform( 1, -2.98023e-08, 2.98023e-08, -5.96046e-08, 1, -2.98023e-08, 2.98023e-08, 2.98023e-08, 1, 0, 0, 0 )
+shape = SubResource( 5 )
 
 [node name="MeshInstance" type="MeshInstance" parent="RigidBodies/Cube/CollisionShape"]
-mesh = SubResource( 9 )
-material/0 = SubResource( 10 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
 
 [node name="Lighting" type="Spatial" parent="."]
 
